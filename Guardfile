@@ -31,7 +31,7 @@ group :red_green_refactor, halt_on_fail: true do
     run_all: {
       cmd: 'COVERAGE=true DISABLE_SPRING=true bin/rspec -f doc'
     },
-    all_on_start: true
+    all_on_start: true,
     all_after_pass: true
   }
 
@@ -83,11 +83,16 @@ group :red_green_refactor, halt_on_fail: true do
   rubocop_options = {
     all_on_start: true,
     cli: '--parallel',
-    keep_failed: true,
+    keep_failed: true
   }
 
   guard :rubocop, rubocop_options do
     watch(%r{.+.rb$})
     watch(%r{(?:.+/)?.rubocop(?:_todo)?.yml$}) { |m| File.dirname(m[0]) }
+  end
+
+  guard 'reek' do
+    watch(%r{.+\.rb$})
+    watch('.reek')
   end
 end

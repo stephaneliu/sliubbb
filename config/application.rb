@@ -1,4 +1,6 @@
-require_relative 'boot'
+# frozen_string_literal: true
+
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -22,13 +24,13 @@ Bundler.require(*Rails.groups)
 module Sliubbb
   class Application < Rails::Application
     config.generators do |g|
-      g.helper              false
-      g.test_framework      :rspec, fixture: true
-      g.view_specs          false
+      g.helper false
+      g.test_framework :rspec, fixture: true
+      g.view_specs false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
-      g.helper              false
-      g.template_engine     :haml
-      g.stylesheet_engine   :sass
+      g.helper false
+      g.template_engine :haml
+      g.stylesheet_engine :sass
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

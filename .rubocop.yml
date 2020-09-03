@@ -1,36 +1,37 @@
 require:
-  - 'rubocop-rspec'
-  - 'test_prof/rubocop'
+  - "rubocop-rspec"
+  - "test_prof/rubocop"
 
 AllCops:
   NewCops: enable
   Exclude:
-    - 'db/schema.rb'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+    - "bin/*"
+    - "db/schema.rb"
+    - "node_modules/**/*"
+    - "vendor/**/*"
 
 Layout/LineLength:
   Exclude:
-    - 'Gemfile'
-    - 'config/initializers/*'
-    - 'db/seeds.rb'
+    - "Gemfile"
+    - "config/initializers/*"
+    - "db/seeds.rb"
   Max: 100
 
 Layout/MultilineOperationIndentation:
-  EnforcedStyle: 'indented'
+  EnforcedStyle: "indented"
 
 Metrics/BlockLength:
   Exclude:
-    - 'Gemfile'
-    - 'Guardfile'
-    - 'lib/tasks/auto_annotate_models.rake'
-    - 'spec/**/*.rb'
+    - "Gemfile"
+    - "Guardfile"
+    - "lib/tasks/auto_annotate_models.rake"
+    - "spec/**/*.rb"
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
 
 Naming/VariableNumber:
-  EnforcedStyle: 'snake_case'
+  EnforcedStyle: "snake_case"
 
 Rails:
   Enabled: true
@@ -38,68 +39,68 @@ Rails:
 RSpec/AggregateExamples:
   Enabled: true
   Include:
-    - 'spec/**/*.rb'
+    - "spec/**/*.rb"
 
 RSpec/DescribeClass:
   Exclude:
-    - 'spec/views/**/*'
-    - 'spec/routing/*'
-    - 'spec/features/**/*'
+    - "spec/views/**/*"
+    - "spec/routing/*"
+    - "spec/features/**/*"
 
 RSpec/ExampleLength:
   Exclude:
-    - 'spec/features/**/*'
+    - "spec/features/**/*"
 
 RSpec/MultipleExpectations:
   Max: 2
   Exclude:
-    - 'spec/features/**/*'
+    - "spec/features/**/*"
 
 RSpec/NestedGroups:
   Max: 3
 
 Style/Documentation:
   Exclude:
-    - 'app/controllers/*'
-    - 'app/forms/*'
-    - 'app/helpers/application_helper.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/*'
-    - 'bin/*'
-    - 'build/**/*'
-    - 'config/**/*'
-    - 'config/application.rb'
-    - 'db/**/*'
-    - 'deploy/**/*'
-    - 'doc/**/*'
-    - 'docker/**/*'
-    - 'Gemfile'
-    - 'Guardfile'
-    - 'lib/tasks/*'
-    - 'script/**/*'
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'vendor/**/*'
+    - "app/controllers/*"
+    - "app/forms/*"
+    - "app/helpers/application_helper.rb"
+    - "app/mailers/application_mailer.rb"
+    - "app/models/*"
+    - "bin/*"
+    - "build/**/*"
+    - "config/**/*"
+    - "config/application.rb"
+    - "db/**/*"
+    - "deploy/**/*"
+    - "doc/**/*"
+    - "docker/**/*"
+    - "Gemfile"
+    - "Guardfile"
+    - "lib/tasks/*"
+    - "script/**/*"
+    - "spec/**/*"
+    - "test/**/*"
+    - "vendor/**/*"
     - !ruby/regexp /old_and_unused.rb$/
 
 Style/FrozenStringLiteralComment:
   Enabled: true
-  EnforcedStyle: 'always'
+  EnforcedStyle: "always"
 
 Style/MixinUsage:
   Exclude:
-    - 'bin/setup'
-    - 'bin/update'
+    - "bin/setup"
+    - "bin/update"
 
 Style/PercentLiteralDelimiters:
   Exclude:
-    - 'Guardfile'
+    - "Guardfile"
 
 Style/RegexpLiteral:
   Exclude:
-    - 'Guardfile'
+    - "Guardfile"
 
 Style/StringLiterals:
   EnforcedStyle: "double_quotes"
   Exclude:
-    - 'Guardfile'
+    - "Guardfile"
