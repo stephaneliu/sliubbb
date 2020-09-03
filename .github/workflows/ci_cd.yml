@@ -3,15 +3,67 @@ name: Test and deploy
 on: [push, pull_request]
 
 jobs:
-  test:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Install yarn
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
+      - name: Run Prettier
+        run: |
+          sudo yarn install
+          sudo yarn prettier --check '**/*.rb'
+
+  rubocop:
     runs-on: ubuntu-latest
 
     needs: lint
 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+
+      - name: Cache Bundler
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install Rubocop
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Run Rubocop
+        env:
+          RAILS_ENV: test
+          RlAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          bundle exec rubocop
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs: rubocop
+
     services:
       db:
         image: postgres:11@sha256:85d79cba2d4942dad7c99f84ec389a5b9cc84fb07a3dcd3aff0fb06948cdc03b
-        ports: ['5432:5432']
+        ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -19,7 +71,7 @@ jobs:
           --health-retries 5
       redis:
         image: redis
-        ports: ['6379:6379']
+        ports: ["6379:6379"]
         options: --entrypoint redis-server
 
     steps:
