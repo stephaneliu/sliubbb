@@ -105,12 +105,13 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
           bundle exec rails db:prepare
-          bundle exec rspec spec
+          COVERAGE=true CI=true bundle exec rspec spec
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/lcov/lcov.info"
 
   deploy_staging:
     runs-on: ubuntu-latest

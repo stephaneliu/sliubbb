@@ -1,15 +1,20 @@
 # frozen_string_literal: true
 
-if ENV["COVERAGE"] == "true"
+if ENV["COVERAGE"]
   require "simplecov"
   require "simplecov-lcov"
 
   SimpleCov.start "rails" do
-    SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+    if ENV["CI"]
+      SimpleCov::Formatter::LcovFormatter.config do |config|
+        config.report_with_single_file = true
+        config.lcov_file_name = "lcov.info"
+      end
+      formatter SimpleCov::Formatter::LcovFormatter
+    else
+      SimpleCov::Formatter::HTMLFormatter
+    end
 
-    formatter SimpleCov::Formatter::MultiFormatter.new(
-      [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::LcovFormatter]
-    )
     minimum_coverage 95
     maximum_coverage_drop 1
 
