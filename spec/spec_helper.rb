@@ -2,8 +2,14 @@
 
 if ENV["COVERAGE"] == "true"
   require "simplecov"
+  require "simplecov-lcov"
 
   SimpleCov.start "rails" do
+    SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
+
+    formatter SimpleCov::Formatter::MultiFormatter.new(
+      [SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::LcovFormatter]
+    )
     minimum_coverage 95
     maximum_coverage_drop 1
 

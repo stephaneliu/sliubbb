@@ -41,7 +41,7 @@ group :development do
   gem "rubocop" # https://github.com/rubocop-hq/rubocop
   gem "spring" # https://github.com/rails/spring
   gem "spring-commands-rspec" # https://github.com/jonleighton/spring-commands-rspec
-  gem "spring-watcher-listen", "~> 2.0.0" # https://github.com/jonleighton/spring-watcher-listen
+  gem "spring-watcher-listen" # https://github.com/jonleighton/spring-watcher-listen
   gem "terminal-notifier" # https://github.com/julienXX/terminal-notifier
   gem "terminal-notifier-guard" # https://github.com/Springest/terminal-notifier-guard
   gem "web-console", ">= 3.3.0" # https://github.com/rails/web-console
@@ -53,12 +53,13 @@ group :test do
   gem "faker" # https://github.com/faker-ruby/faker
   gem "rspec-rails" # https://github.com/rspec/rspec-rails
   gem "selenium-webdriver" # https://github.com/SeleniumHQ/selenium
-  gem "shoulda-matchers", "~> 4.4" # https://matchers.shoulda.io/
-  gem "simplecov", require: false # https://github.com/simplecov-ruby/simplecov
+  gem "simplecov" # https://github.com/simplecov-ruby/simplecov
+  gem "simplecov-lcov" # http://github.com/fortissimo1997/simplecov-lcov
   gem "test-prof" # http://github.com/test-prof/test-prof
 end
 
 group :development, :test do
   gem "pry-rails" # https://github.com/rweng/pry-rails
   gem "rubocop-rspec" # https://github.com/rubocop-hq/rubocop-rspec
+  gem "shoulda-matchers", "~> 4.4" # https://matchers.shoulda.io/
 end

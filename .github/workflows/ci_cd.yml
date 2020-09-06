@@ -107,6 +107,11 @@ jobs:
           bundle exec rails db:prepare
           bundle exec rspec spec
 
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
   deploy_staging:
     runs-on: ubuntu-latest
 
