@@ -4,18 +4,6 @@ guard 'process', name: 'Webpacker', command: 'bin/webpack' do
   watch(%r{^app/javascript/w+/*})
 end
 
-brakeman_options = {
-  run_on_start: true,
-  quiet: true
-}
-
-guard 'brakeman', brakeman_options do
-  watch(%r{^app/.+.(erb|haml|rhtml|rb)$})
-  watch(%r{^config/.+.rb$})
-  watch(%r{^lib/.+.rb$})
-  watch('Gemfile')
-end
-
 # Guard-HamlLint supports a lot options with default values:
 # all_on_start: true        # Check all files at Guard startup. default: true
 # haml_dires: ['app/views'] # Check Directories. default: 'app/views' or '.'
@@ -25,9 +13,9 @@ guard :haml_lint, all_on_start: false do
   watch(%r{(?:.+/)?.haml-lint.yml$}) { |m| File.dirname(m[0]) }
 end
 
-group :red_green_refactor, halt_on_fail: true do
+group :rgr, halt_on_fail: true do
   rspec_options = {
-    cmd: 'bin/rspec -f doc --next-failure',
+    cmd: 'bin/rspec -f doc --next-failure --color',
     run_all: {
       cmd: 'COVERAGE=true DISABLE_SPRING=true bin/rspec -f doc'
     },
@@ -94,5 +82,17 @@ group :red_green_refactor, halt_on_fail: true do
   guard 'reek' do
     watch(%r{.+\.rb$})
     watch('.reek')
+  end
+
+  brakeman_options = {
+    run_on_start: true,
+    quiet: true
+  }
+
+  guard 'brakeman', brakeman_options do
+    watch(%r{^app/.+.(erb|haml|rhtml|rb)$})
+    watch(%r{^config/.+.rb$})
+    watch(%r{^lib/.+.rb$})
+    watch('Gemfile')
   end
 end

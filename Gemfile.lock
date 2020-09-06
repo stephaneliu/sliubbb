@@ -278,6 +278,7 @@ GEM
       rspec-expectations (~> 3.9)
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
+    rspec-simplecov (0.2.2)
     rspec-support (3.9.3)
     rubocop (0.90.0)
       parallel (~> 1.10)
@@ -398,6 +399,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.2)
   rails_layout
   rspec-rails
+  rspec-simplecov
   rubocop
   rubocop-rspec
   sass-rails (>= 6)
