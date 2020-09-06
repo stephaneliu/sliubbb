@@ -1,5 +1,8 @@
 # README
 
+[![Coverage
+Status](https://coveralls.io/repos/github/stephaneliu/sliubbb/badge.svg?branch=master)](https://coveralls.io/github/stephaneliu/sliubbb?branch=master)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
