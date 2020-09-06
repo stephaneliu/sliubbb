@@ -30,7 +30,7 @@
 .DS_Store
 gems.tags
 tags
-./coverage
+/coverage/*
 ./.env
 ./config/initializers/*
 /public/packs
