@@ -17,7 +17,7 @@ group :rgr, halt_on_fail: true do
   rspec_options = {
     cmd: "bin/rspec --next-failure --color",
     run_all: {
-      cmd: "COVERAGE=true CI=true DISABLE_SPRING=true bin/rspec"
+      cmd: "COVERAGE=true DISABLE_SPRING=true bin/rspec"
     },
     all_on_start: true,
     all_after_pass: true
