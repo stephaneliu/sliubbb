@@ -5,11 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.6"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# Full-stack web application framework. (https://rubyonrails.org)
 gem "rails", "~> 6.0.3", ">= 6.0.3.2" # https://rubyonrails.org
 
-gem "awesome_print" # https://github.com/awesome-print/awesome_print
 gem "bootsnap", ">= 1.4.2", require: false # https://github.com/Shopify/bootsnap
 gem "bootstrap", "~>4.5" # https://github.com/twbs/bootstrap-rubygem
 gem "devise", "~> 4.7", ">= 4.7.1" # https://github.com/heartcombo/devise
@@ -51,7 +48,6 @@ group :test do
   gem "factory_bot_rails" # https://github.com/thoughtbot/factory_bot_rails
   # Easily generate fake data (https://github.com/faker-ruby/faker)
   gem "faker" # https://github.com/faker-ruby/faker
-  gem "rspec-rails" # https://github.com/rspec/rspec-rails
   gem "selenium-webdriver" # https://github.com/SeleniumHQ/selenium
   gem "simplecov" # https://github.com/simplecov-ruby/simplecov
   gem "simplecov-lcov" # http://github.com/fortissimo1997/simplecov-lcov
@@ -59,7 +55,9 @@ group :test do
 end
 
 group :development, :test do
+  gem "awesome_print" # https://github.com/awesome-print/awesome_print
   gem "pry-rails" # https://github.com/rweng/pry-rails
+  gem "rspec-rails" # https://github.com/rspec/rspec-rails
   gem "rubocop-rspec" # https://github.com/rubocop-hq/rubocop-rspec
   gem "shoulda-matchers", "~> 4.4" # https://matchers.shoulda.io/
 end
