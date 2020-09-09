@@ -15,9 +15,11 @@ jobs:
         with:
           cmd: install
 
+      - name: Install dependencies
+        run: sudo yarn install
+
       - name: Run Prettier
         run: |
-          sudo yarn install
           sudo yarn prettier --check '**/*.rb'
 
   rubocop:
