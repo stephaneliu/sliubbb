@@ -99,7 +99,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get -yqq install libpq-dev
-          yarn install
+          sudo yarn install
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
@@ -133,13 +133,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Deploy sliubbb-stagging
-        env:
-          HEROKU_API_KEY: ${{ SECRETS.HEROKU_API_KEY }}
+      - name: Install dependencies
         run: |
           sudo apt-get -yqq install apt-transport-https python3-software-properties
           curl https://cli-assets.heroku.com/install.sh | sudo sh
           sudo gem install dpl
+      - name: Deploy sliubbb-stagging
+        env:
+          HEROKU_API_KEY: ${{ SECRETS.HEROKU_API_KEY }}
+        run: |
           sudo dpl --provider=heroku --app=sliubbb-staging --api-key=$HEROKU_API_KEY
           heroku run rake db:migrate --exit-code --app sliubbb-staging
 
@@ -153,12 +155,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Deploy sliubbb-production
-        env:
-          HEROKU_API_KEY: ${{ SECRETS.HEROKU_API_KEY }}
+      - name: Install dependencies
         run: |
           sudo apt-get -yqq install apt-transport-https python3-software-properties
           curl https://cli-assets.heroku.com/install.sh | sudo sh
           sudo gem install dpl
+
+      - name: Deploy sliubbb-production
+        env:
+          HEROKU_API_KEY: ${{ SECRETS.HEROKU_API_KEY }}
+        run: |
           sudo dpl --provider=heroku --app=sliubbb-production --api-key=$HEROKU_API_KEY
           heroku run rake db:migrate --exit-code --app sliubbb-production
