@@ -18,10 +18,6 @@ directories:
   "config":
     UncommunicativeVariableName:
       enabled: false
-  "db/migrate":
-    FeatureEnvy:
-      enabled: false
-    UncommunicativeVariableName:
-      enabled: false
 exclude_paths:
   - node_modules
+  - db/migrate
