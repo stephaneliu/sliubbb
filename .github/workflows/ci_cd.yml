@@ -99,6 +99,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get -yqq install libpq-dev
+          yarn install
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
