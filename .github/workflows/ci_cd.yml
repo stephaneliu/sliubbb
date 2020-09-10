@@ -49,7 +49,7 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Run Haml Linter
-        run: haml-lint app/views
+        run: bundle exec haml-lint app/views
 
   rubocop:
     runs-on: ubuntu-latest
