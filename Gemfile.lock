@@ -331,7 +331,6 @@ GEM
     temple (0.8.2)
     terminal-notifier (2.0.0)
     terminal-notifier-guard (1.7.0)
-    test-prof (0.12.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -402,7 +401,6 @@ DEPENDENCIES
   spring-watcher-listen
   terminal-notifier
   terminal-notifier-guard
-  test-prof
   turbolinks (~> 5)
   web-console (>= 3.3.0)
   webpacker (~> 4.0)

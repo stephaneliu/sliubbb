@@ -51,7 +51,6 @@ group :test do
   gem "selenium-webdriver" # https://github.com/SeleniumHQ/selenium
   gem "simplecov" # https://github.com/simplecov-ruby/simplecov
   gem "simplecov-lcov" # http://github.com/fortissimo1997/simplecov-lcov
-  gem "test-prof" # http://github.com/test-prof/test-prof
 end
 
 group :development, :test do
