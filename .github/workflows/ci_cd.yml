@@ -22,6 +22,24 @@ jobs:
         run: |
           sudo yarn prettier --check '**/*.rb'
 
+  haml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.6
+
+      - name: Install Haml linter
+        run: gem install haml_lint
+
+      - name: Run Haml Linter
+        run: haml-lint app/views
+
   rubocop:
     runs-on: ubuntu-latest
 

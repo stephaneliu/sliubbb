@@ -4,18 +4,15 @@ guard 'process', name: 'Webpacker', command: 'bin/webpack' do
   watch(%r{^app/javascript/w+/*})
 end
 
-# Guard-HamlLint supports a lot options with default values:
-# all_on_start: true        # Check all files at Guard startup. default: true
-# haml_dires: ['app/views'] # Check Directories. default: 'app/views' or '.'
-# cli: '--fail-fast --no-color' # Additional command line options to haml-lint.
-guard :haml_lint, all_on_start: false do
-  watch(%r{.+.html.*.haml$})
-  watch(%r{(?:.+/)?.haml-lint.yml$}) { |m| File.dirname(m[0]) }
-end
-
 group :rgr, halt_on_fail: true do
+  guard :haml_lint, all_on_start: false do
+    watch(%r{.+.html.*.haml$})
+    watch(%r{(?:.+/)?.haml-lint.yml$}) { |m| File.dirname(m[0]) }
+  end
+
   rspec_options = {
-    cmd: "bin/rspec --next-failure --color",
+    cmd: "bin/rspec --color --format doc",
+    failed_mode: :keep,
     run_all: {
       cmd: "COVERAGE=true DISABLE_SPRING=true bin/rspec"
     },

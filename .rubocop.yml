@@ -15,6 +15,7 @@ Layout/LineLength:
     - "Gemfile"
     - "config/initializers/*"
     - "db/seeds.rb"
+    - "db/migrate/*"
   Max: 100
 
 Layout/MultilineOperationIndentation:
