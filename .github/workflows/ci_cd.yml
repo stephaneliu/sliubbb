@@ -63,11 +63,22 @@ jobs:
         with:
           ruby-version: 2.6.6
 
-      - name: Install Rubocop
-        run: gem install rubocop rubocop-rspec
+      - name: Cache Bundler
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
 
       - name: Run Rubocop
-        run: rubocop
+        run: bundle exec rubocop
 
   reek:
     runs-on: ubuntu-latest
