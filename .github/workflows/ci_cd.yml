@@ -43,9 +43,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
+        uses: ruby/setup-ruby@v1
 
       - name: Cache Bundler
         uses: actions/cache@v2
@@ -72,9 +70,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
+        uses: ruby/setup-ruby@v1
 
       - name: Cache Bundler
         uses: actions/cache@v2
@@ -101,9 +97,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
+        uses: ruby/setup-ruby@v1
 
       - name: Install Reek
         run: |
@@ -120,9 +114,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
+        uses: ruby/setup-ruby@v1
 
       - name: Install Brakeman
         run: gem install brakeman
@@ -158,9 +150,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.1
+        uses: ruby/setup-ruby@v1
 
       - name: Install yarn
         uses: borales/actions-yarn@v2.0.0
