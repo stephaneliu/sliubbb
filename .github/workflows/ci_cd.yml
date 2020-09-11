@@ -218,7 +218,7 @@ jobs:
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: "./coverage/lcov/lcov.info"
+          lcov-file: "./coverage/lcov/lcov.info"
 
       - name: Create Coverage Artifact
         uses: actions/upload-artifact@v2
