@@ -214,6 +214,18 @@ jobs:
         run: |
           COVERAGE=true CI=true bundle exec rspec spec
 
+      - name: Coverage Report
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "./coverage/lcov/lcov.info"
+
+      - name: Create Coverage Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage/
+
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
