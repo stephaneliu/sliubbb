@@ -45,7 +45,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.6
+          ruby-version: 2.7.1
 
       - name: Cache Bundler
         uses: actions/cache@v2
@@ -74,7 +74,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.6
+          ruby-version: 2.7.1
 
       - name: Cache Bundler
         uses: actions/cache@v2
@@ -103,7 +103,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.6
+          ruby-version: 2.7.1
 
       - name: Install Reek
         run: |
@@ -111,6 +111,30 @@ jobs:
 
       - name: Run Reek
         run: reek *
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.1
+
+      - name: Install Brakeman
+        run: gem install brakeman
+
+      - name: Run Brakeman
+        run: brakeman -f json > tmp/brakeman.json || exit 0
+
+      - name: Brakeman Report
+        uses: devmasx/brakeman-linter-action@v1.0.0
+        env:
+          REPORT_PATH: tmp/brakeman.json
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     runs-on: ubuntu-latest
@@ -136,7 +160,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6.6
+          ruby-version: 2.7.1
 
       - name: Install yarn
         uses: borales/actions-yarn@v2.0.0
