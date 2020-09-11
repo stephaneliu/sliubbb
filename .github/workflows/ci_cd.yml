@@ -214,11 +214,11 @@ jobs:
         run: |
           COVERAGE=true CI=true bundle exec rspec spec
 
-      - name: Coverage Report
-        uses: romeovs/lcov-reporter-action@v0.2.16
+      - name: Create Coverage Artifact
+        uses: actions/upload-artifact@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          lcov-file: "./coverage/lcov/lcov.info"
+          name: code-coverage
+          path: coverage/
 
       - name: Create Coverage Artifact
         uses: actions/upload-artifact@v2
