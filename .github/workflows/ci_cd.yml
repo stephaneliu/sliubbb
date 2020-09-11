@@ -214,7 +214,8 @@ jobs:
         run: |
           COVERAGE=true CI=true bundle exec rspec spec
 
-      - name: Coverage Report
+      - if: github.event_name == 'pull_request'
+        name: Coverage Report
         uses: romeovs/lcov-reporter-action@v0.2.16
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
