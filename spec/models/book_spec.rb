@@ -16,7 +16,9 @@ RSpec.describe Book, type: :model do
   describe "validations" do
     subject(:book) { described_class.new }
 
-    specify { expect(book).to validate_presence_of(:name) }
-    specify { expect(book).to validate_length_of(:description).is_at_most(50) }
+    it "is enforced", :aggregate_failures do
+      expect(book).to validate_presence_of(:name)
+      expect(book).to validate_length_of(:description).is_at_most(50)
+    end
   end
 end
