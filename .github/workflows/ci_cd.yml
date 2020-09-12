@@ -44,20 +44,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
-
-      - name: Cache Bundler
-        uses: actions/cache@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run Haml Linter
         run: bundle exec haml-lint app/views
@@ -71,20 +59,8 @@ jobs:
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
-
-      - name: Cache Bundler
-        uses: actions/cache@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Run Rubocop
         run: bundle exec rubocop
@@ -149,9 +125,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-
       - name: Install yarn
         uses: borales/actions-yarn@v2.0.0
         with:
@@ -173,20 +146,14 @@ jobs:
       - name: Install dependencies
         run: sudo yarn install
 
-      - name: Cache Bundler
-        uses: actions/cache@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          bundler-cache: true
 
       - name: Install dependencies
         run: |
           sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
 
       - name: Setup database
         env:
@@ -203,12 +170,6 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           COVERAGE=true CI=true bundle exec rspec spec
-
-      - name: Create Coverage Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage
-          path: coverage/
 
       - name: Create Coverage Artifact
         uses: actions/upload-artifact@v2
