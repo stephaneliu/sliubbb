@@ -12,4 +12,5 @@
 #
 class Book < ApplicationRecord
   validates :name, presence: true
+  validates :description, length: { maximum: 50 }
 end

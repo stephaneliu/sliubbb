@@ -17,5 +17,6 @@ RSpec.describe Book, type: :model do
     subject(:book) { described_class.new }
 
     specify { expect(book).to validate_presence_of(:name) }
+    specify { expect(book).to validate_length_of(:description).is_at_most(50) }
   end
 end
