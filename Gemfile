@@ -22,10 +22,10 @@ gem "webpacker", "~> 4.0" # https://github.com/rails/webpacker
 group :development do
   gem "annotate" # http://github.com/ctran/annotate_models
   gem "annotate_gem" # https://github.com/ivantsepp/annotate_gem
-  gem "better_errors" # https://github.com/BetterErrors/better_errors
   gem "guard" # http://guardgem.org
   gem "guard-brakeman", require: false # https://github.com/guard/guard-brakeman
   gem "guard-haml_lint" # https://github.com/yatmsu/guard-haml-lint
+  gem "guard-livereload", require: false # https://rubygems.org/gems/guard-livereload
   gem "guard-process"
   gem "guard-reek" # https://github.com/grantspeelman/guard-reek
   gem "guard-rspec" # https://github.com/guard/guard-rspec
@@ -34,6 +34,7 @@ group :development do
   gem "listen", "~> 3.2" # https://github.com/guard/listen
   gem "meta_request" # https://github.com/dejan/rails_panel/tree/master/meta_request
   gem "prettier" # https://github.com/prettier/plugin-ruby#readme
+  gem "rack-livereload" # https://github.com/onesupercoder/rack-livereload
   gem "rails_layout" # http://github.com/RailsApps/rails_layout/
   gem "rubocop" # https://github.com/rubocop-hq/rubocop
   gem "spring" # https://github.com/rails/spring
